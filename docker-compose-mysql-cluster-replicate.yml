@@ -3,7 +3,7 @@ version: "3"
 services:
    
     tlay-replicate:
-        image: tlay/tlay-replicate:1.6.4
+        image: tlay/mysql-replicate:1.6.4
         networks:
             - mysqlcluster
         env_file:
