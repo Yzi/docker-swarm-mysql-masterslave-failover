@@ -3,7 +3,7 @@
 ## Write out config file
 cat >> /tmp/mysqlrouter.conf << EOF
 [DEFAULT]
-logging_folder=
+logging_folder=/var/log/mysqlrouter
 connect_timeout=30
 read_timeout=30
 
