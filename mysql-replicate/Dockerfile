@@ -1,4 +1,4 @@
-FROM tlay/tlay-utilities:1.6.4
+FROM tlay/mysql-utilities:1.6.4
 LABEL MAINTAINER "Yzi <guoyaozhide@gmail.com>"
 
 ENV MYSQL_ROOT_PASSWORD=""
