@@ -1,0 +1,57 @@
+version: "3"
+
+services:
+    
+    mysql1:
+        image: mysql:5.7
+        ports:
+            - "3307:3306"
+        networks:
+            - mysqlcluster
+        env_file:
+            - ./config.env
+        volumes:
+            - ./data/mysql1/lib:/var/lib/mysql
+            - ./data/mysql1/conf.d:/etc/mysql/conf.d
+            - ./data/mysql1/initdb.d:/docker-entrypoint-initdb.d
+            - ./data/mysql1/log:/var/log/mysql
+        deploy:
+            mode: replicated
+            replicas: 1
+            update_config:
+                parallelism: 1
+                delay: 60s
+            restart_policy:
+                condition: none
+                max_attempts: 5
+            placement:
+                constraints: [node.role == manager]
+
+    mysql2:
+        image: mysql:5.7
+        ports:
+            - "3308:3306"
+        networks:
+            - mysqlcluster
+        env_file:
+            - ./config.env
+        volumes:
+            - ./data/mysql2/lib:/var/lib/mysql
+            - ./data/mysql2/conf.d:/etc/mysql/conf.d
+            - ./data/mysql2/initdb.d:/docker-entrypoint-initdb.d
+            - ./data/mysql2/log:/var/log/mysql
+        deploy:
+            mode: replicated
+            replicas: 1
+            update_config:
+                parallelism: 1
+                delay: 60s
+            restart_policy:
+                condition: on-failure
+                max_attempts: 5
+            placement:
+                constraints: [node.role == worker]
+
+networks:
+    mysqlcluster:
+        external: true

@@ -1,0 +1,1 @@
+docker build -t tlay/tlay-router:0.8.10 .

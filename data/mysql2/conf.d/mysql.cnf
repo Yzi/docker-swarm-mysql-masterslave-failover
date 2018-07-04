@@ -1,0 +1,10 @@
+[mysqld]
+collation-server=utf8mb4_unicode_ci
+character-set-server=utf8mb4
+lower_case_table_names=1
+slow-query-log=ON
+gtid_mode=ON
+log-bin
+log-slave-updates
+enforce-gtid-consistency
+master-info-repository=TABLE

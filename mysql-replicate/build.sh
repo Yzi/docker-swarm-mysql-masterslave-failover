@@ -1,0 +1,1 @@
+docker build -t tlay/tlay-replicate:1.6.4 .

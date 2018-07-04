@@ -1,0 +1,45 @@
+version: "3"
+
+services:
+   
+    tlay-failover:
+        image: tlay/tlay-failover:1.6.4
+        networks:
+            - mysqlcluster
+        env_file:
+            - ./config.env
+        volumes:
+            - ./data/mysqlfailover:/var/log/mysqlfailover
+        deploy:
+            mode: replicated
+            replicas: 1
+            update_config:
+                parallelism: 1
+                delay: 60s
+            restart_policy:
+                condition: none
+                max_attempts: 5
+
+    tlay-router:
+        image: tlay/tlay-router:0.8.10
+        ports:
+            - "6446:6446"            
+        networks:
+            - mysqlcluster
+        env_file:
+            - ./config.env
+        volumes:
+            - ./data/mysqlrouter:/var/log/mysqlrouter
+        deploy:
+            mode: replicated
+            replicas: 2
+            update_config:
+                parallelism: 1
+                delay: 60s
+            restart_policy:
+                condition: none
+                max_attempts: 5
+
+networks:
+    mysqlcluster:
+        external: true

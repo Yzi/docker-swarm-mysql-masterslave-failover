@@ -1,0 +1,4 @@
+[mysqld]
+server-id=1
+report-host=mysql1
+report-port=3307

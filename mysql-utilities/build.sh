@@ -1,0 +1,1 @@
+docker build -t tlay/tlay-utilities:1.6.4 .

@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+   
+    tlay-replicate:
+        image: tlay/tlay-replicate:1.6.4
+        networks:
+            - mysqlcluster
+        env_file:
+            - ./config.env
+        deploy:
+            mode: replicated
+            replicas: 1
+            update_config:
+                parallelism: 1
+                delay: 60s
+            restart_policy:
+                condition: none
+                max_attempts: 5
+
+networks:
+    mysqlcluster:
+        external: true
