@@ -1,1 +1,1 @@
-docker build -t tlay/tlay-replicate:1.6.4 .
+docker build -t tlay/mysql-replicate:1.6.4 .

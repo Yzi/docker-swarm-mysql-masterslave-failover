@@ -1,1 +1,1 @@
-docker build -t tlay/tlay-router:0.8.10 .
+docker build -t tlay/mysql-router:0.8.10 .

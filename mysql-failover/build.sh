@@ -1,1 +1,1 @@
-docker build -t tlay/tlay-failover:1.6.4 .
+docker build -t tlay/mysql-failover:1.6.4 .
